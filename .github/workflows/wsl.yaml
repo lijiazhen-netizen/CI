@@ -6,18 +6,30 @@ on:
       - main
 
 jobs:
-  test:
+  build:
     runs-on: self-hosted
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Show files
+      - name: Check runner system
         run: |
+          echo "===== runner info ====="
+          echo "whoami:"
+          whoami
+          echo "pwd:"
           pwd
+          echo "uname:"
+          uname -a
+          echo "proc version:"
+          cat /proc/version
+          echo "files:"
           ls -la
 
-      - name: Run hello
+      - name: Run Python file
         run: |
-          echo "代码已经被拉到 WSL 里执行了"
+          echo "===== python version ====="
+          python3 --version
+          echo "===== run hello.py ====="
+          python3 .github/workflows/python/hello.py
