@@ -1,0 +1,23 @@
+name: WSL CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Show files
+        run: |
+          pwd
+          ls -la
+
+      - name: Run hello
+        run: |
+          echo "代码已经被拉到 WSL 里执行了"
